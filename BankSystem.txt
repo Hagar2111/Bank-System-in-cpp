@@ -1,0 +1,237 @@
+#include <iostream>
+
+#include<string>
+
+#include<string_view>
+
+#include<algorithm>
+
+using namespace std;
+
+class Person{
+
+protected:
+
+    int id;
+
+    string name;
+
+    string password;
+    double balance;
+
+    int size;
+
+    int sizep;
+
+public:
+
+    void setId(int i) {
+
+        id = i;
+
+    }
+
+
+
+    void setName(string n) {
+
+        size = n.length();
+
+
+
+        if (size > 5 && size < 20) {
+
+            name = n;
+
+        } else {
+
+            cout << "invalid name";
+
+        }
+
+    }
+
+
+
+    void setPassword(string p) {
+
+        sizep = p.length();
+
+        if (sizep > 8 && sizep > 20) {
+
+            password = p;
+
+        } else {
+
+            cout << "invalid password";
+
+        }
+
+    }
+    void setBalance(double b){
+         if(b>5000)
+
+
+        balance=b;
+        else {
+            cout<<"the salary must be up to 5000";
+        }}
+
+
+
+    int getId() {
+
+        return id;
+
+    }
+
+
+
+    string getName() {
+
+        return name;
+
+    }
+
+
+
+    string getPassword() {
+
+        return password;
+
+    }
+
+    double getBalance()
+    {
+        return balance;
+    }
+
+
+
+    void display() {
+
+        cout << "the name is :" << name << endl;
+
+        cout << "the password is :" << password << endl;
+
+        cout << "the id is :" << id << endl;
+
+    }};
+
+
+
+class Client:public Person{
+
+
+public:
+
+
+    void makeDeposit(double deposit){
+
+        balance += deposit;
+
+    }
+
+    void makeWithdraw(double withdraw){
+
+        cout << "Your Current balance is: " << balance << endl;
+
+        cout << "Enter amount to withdraw " << endl;
+
+        cin >> withdraw;
+
+        if(balance >= withdraw){
+
+            balance -= withdraw;
+
+            cout << "Your new balance is: " << balance << endl;
+
+        }
+
+        else
+
+        {
+
+            cout << "Sorry, Insufficient balance";
+
+        }
+
+    }
+
+    void transferTo (double amount, Client &recipient){
+
+        if(balance >= amount){
+
+
+
+            balance -= amount;
+
+
+
+            recipient.makeDeposit(amount);
+
+
+
+            cout << "Your new balance is: " << balance << endl;
+
+        }
+
+        else
+
+        {
+
+            cout << "Sorry, Insufficient balance";
+
+        }
+
+
+
+    }
+
+    void checkBalance(){
+
+        cout << "Your Balance is: " << balance;
+
+    }
+
+    void display(){
+
+        cout << "Your Balance: " << balance << endl;
+
+    }
+
+};
+
+class Employee: public Person{
+
+};
+
+class Admin : public Person {
+
+
+
+};
+
+int main()
+
+{
+    Client c;
+    Employee e;
+    Admin a;
+    string x,y,z;
+    cout<<"enter the name of client: ";
+     getline(cin,x);
+     cout<<"enter the name of emplyee: ";
+     getline(cin,y);
+     cout<<"enter the name of admin: ";
+     getline(cin,z);
+
+    c.setName(x);
+    e.setName(y);
+    a.setName(z);
+    cout<<e.getName();
+
+    return 0;
+
+}
+
